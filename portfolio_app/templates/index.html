@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gokulakannan | Portfolio</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
+<body>
+  <header>
+    <h1>Hi, I'm Gokulakannan 👋</h1>
+    <p>Aspiring Python Backend Developer</p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+ <section id="about" class="fade-in">
+  <div class="about-container">
+    <div class="about-image">
+      <img src="{% static 'images/gokul.jpg' %}" alt="Gokulakannan">
+    </div>
+    <div class="about-text">
+      <h2>About Me</h2>
+      <p>
+        I am an enthusiastic and detail-oriented backend developer with a strong foundation in Python, Django, and RESTful APIs. As a recent graduate, I have hands-on experience developing scalable and efficient web applications through academic projects and self-driven learning.
+      </p>
+      <p>
+        I am passionate about clean code, API development, and database design, and I’m eager to contribute to real-world backend systems in a collaborative team environment.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="fade-in">
+  <h2>Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-card fade-in">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
+      <span>Python</span>
+    </div>
+    <div class="skill-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django" />
+      <span>Django</span>
+    </div>
+    <div class="skill-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" />
+      <span>MySQL</span>
+    </div>
+    <div class="skill-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" />
+      <span>PostgreSQL</span>
+    </div>
+    <div class="skill-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" />
+      <span>Git</span>
+    </div>
+    <div class="skill-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" />
+      <span>HTML</span>
+    </div>
+    <div class="skill-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" />
+      <span>CSS</span>
+    </div>
+    <div class="skill-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
+      <span>JavaScript</span>
+    </div>
+  </div>
+</section>
+
+
+
+  <section id="projects" class="fade-in">
+  <h2>Projects</h2>
+  <div class="project-container">
+    {% for project in projects %}
+      <div class="project-card fade-in">
+        <h3>{{ project.title }}</h3>
+        <p>{{ project.description }}</p>
+        {% if project.github_link %}
+          <a href="{{ project.github_link }}" target="_blank">GitHub</a>
+        {% endif %}
+        {% if project.live_link %}
+          <a href="{{ project.live_link }}" target="_blank">Live Demo</a>
+        {% endif %}
+      </div>
+    {% empty %}
+      <p>No projects found.</p>
+    {% endfor %}
+  </div>
+
+</section>
+
+<section id="resume" class="fade-in">
+  <div class="resume-wrapper">
+    <div class="resume-text">
+      <h2>📄 My Resume</h2>
+      <p>
+        Want to explore my technical expertise, project experience, and academic background in one place? Download my resume below.
+      </p>
+      <a href="{% static 'resume/Gokulakannan_Resume.pdf' %}" download class="resume-btn">
+        <span>📥 Download Resume (PDF)</span>
+      </a>
+    </div>
+    <div class="resume-illustration">
+      <img src="https://cdn-icons-png.flaticon.com/512/3095/3095583.png" alt="Resume Icon">
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="fade-in">
+  <h2>Contact Me</h2>
+  <form method="POST" class="contact-form">
+  {% csrf_token %}
+
+  <label for="id_name">Name</label>
+  <input type="text" name="name" id="id_name" placeholder="Your Name" required>
+
+  <label for="id_email">Email</label>
+  <input type="email" name="email" id="id_email" placeholder="you@example.com" required>
+
+  <label for="id_message">Message</label>
+  <textarea name="message" id="id_message" rows="5" placeholder="Your message..." required></textarea>
+
+  <button type="submit">Send Message</button>
+</form>
+</section>
+
+
+
+  <footer>
+    <p>&copy; 2025 Gokulakannan. All rights reserved.</p>
+  </footer>
+
+  <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
